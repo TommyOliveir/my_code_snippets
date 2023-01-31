@@ -65,3 +65,6 @@ function getSaleItems(data){
 
 const shoppingCart = getSaleItems(products);
 console.log(shoppingCart);
+
+
+
