@@ -1,0 +1,125 @@
+import React, { useEffect, useRef, useState } from "react";
+
+const T = () => {
+  const textareaRef = useRef(null);
+  const [textCount, setTextcount] = useState(0);
+  const [rowsCount, setRowscount] = useState(0);
+  const [warning, setWarning] = useState("");
+
+  const LINE_LIMIT = 7;
+  const CHARS_LIMIT = 230;
+  const REMAINING_CHARS = CHARS_LIMIT - textCount;
+  const REMAINING_ROWS = LINE_LIMIT - rowsCount;
+  //Ancora 2 righe
+
+  const handleInputChange = () => {
+    const textarea = textareaRef.current;
+    const lineHeight = parseInt(getComputedStyle(textarea).lineHeight);
+    const scrollHeight = textarea.scrollHeight;
+    console.log("Line height:", lineHeight);
+    console.log("Scroll height:", scrollHeight);
+    const lineUsed = scrollHeight / lineHeight;
+    setRowscount(lineUsed);
+
+    const content = textareaRef.current.innerHTML;
+    const CURRENT_CHARS = content.length;
+    console.log("Content:", content);
+
+    setTextcount(CURRENT_CHARS);
+  };
+
+  function handleKeyDown(e) {
+    if (rowsCount == LINE_LIMIT && e.key === "Enter") {
+      e.preventDefault();
+    } else if (textCount == CHARS_LIMIT) {
+      if (e.key !== "Backspace") {
+        e.preventDefault();
+      }
+    }
+  }
+
+  useEffect(() => {
+    textareaRef.current.focus();
+  }, []);
+
+  return (
+    <>
+      {" "}
+      <div
+        style={{
+          height: "320px",
+          width: "740px",
+          boxSizing: "content-box",
+          backgroundColor: "#11c882",
+          position: "relative",
+          paddingTop: "10px",
+        }}
+      >
+        <div
+          contenteditable="true"
+          ref={textareaRef}
+          // onChange={handleInputChange}
+          onInput={handleInputChange}
+          onKeyDown={handleKeyDown}
+          style={{
+            backgroundColor: "#ABDCC9",
+            caretColor: "DeepPink",
+            maxWidth: "740px",
+            fontFamily: "Work Sans",
+            // fontStyle: "Italic",
+            fontWeight: "300",
+            fontSize: "30px",
+            resize: "none",
+            outline: "none",
+            paddingLeft: "10px",
+            paddingRight: "10px",
+          }}
+        ></div>
+        <div
+          style={{
+            // backgroundColor: "#e43905",
+            position: "absolute",
+            bottom: 14,
+            paddingLeft: 15,
+            color: "#f18656",
+            fontSize: "24px",
+          }}
+        >
+          {rowsCount == LINE_LIMIT ? `Ancora ${REMAINING_ROWS + 1} riga` : ""} 
+        </div>
+      </div>
+      {/* bootom div text */}
+      <div
+        style={{
+          fontSize: "24px",
+          marginTop: ".5em",
+          // backgroundColor: "red",
+          maxWidth: "740px",
+          display: "flex",
+          justifyContent: "end",
+          alignItems: "center",
+          color: "#2c2b26 ",
+        }}
+      >
+        <span
+          style={{
+            color: "#f18656",
+            fontSize: "24px",
+          }}
+        >
+          {rowsCount == 5 || rowsCount == 6
+            ? `Ancora ${REMAINING_ROWS} ${REMAINING_ROWS == 1 ? "riga" : "righe"} \u00A0\u00A0\  `
+            : ""}
+
+
+        </span>
+        <span>
+          {REMAINING_CHARS} {warning ? warning : ""}
+        </span>
+      </div>
+      (debubg purpose) rowscount {rowsCount}
+    </>
+  );
+};
+
+export default T;
