@@ -1,0 +1,15 @@
+function Car(data) {
+    this.brand = data.brand
+    this.price = data.price
+    // Object.assign(this, data) //alternative
+  	this.carMsg = function () {
+     return `${this.brand} is a great car`
+    };
+}
+
+
+const car1 = new Car({brand: 'toyota', price: "$30"})
+const car2 = new Car({brand: 'peugot', price: "$600"})
+
+console.log(car1.carMsg())
+console.log(car2)
