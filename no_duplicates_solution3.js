@@ -10,19 +10,19 @@ Example input: ["🌈 rainbow", "🦄 unicorn", "🍭 lollipops", "🦄 unicorn"
 Example output: ["🌈 rainbow", "🦄 unicorn", "🍭 lollipops"];
 */ 
 
-const eggScrambleRecipe = [
-    "🥓 bacon",
-    "🥓 bacon", 
-    "🍳 eggs",
-    "🫑 green peppers",
-    "🧀 cheese",
-    "🌶️ hot sauce",
-    "🥓 bacon",
-    "🥦 broccoli", 
-    "🧀 cheese",
-    "🥦 broccoli", 
-    "🌶️ hot sauce"
-]
+// const eggScrambleRecipe = [
+//     "🥓 bacon",
+//     "🥓 bacon", 
+//     "🍳 eggs",
+//     "🫑 green peppers",
+//     "🧀 cheese",
+//     "🌶️ hot sauce",
+//     "🥓 bacon",
+//     "🥦 broccoli", 
+//     "🧀 cheese",
+//     "🥦 broccoli", 
+//     "🌶️ hot sauce"
+// ]
 
 // function removeDupesFromArray(arr){
 //     // create a new object to keep track of duplicates 
